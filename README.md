@@ -57,6 +57,8 @@ INSTALLED_APPS = [
 - Se incluye ambos procesos **Proceso para descargar layout** y **Proceso para Leer Excel**
                     
 ```sh
+from DoCodeCarga.procesos import layout
+
 # Proceso para descargar Layout
 if layout.verificar(request):
         return layout.descargar(Modelo)
@@ -78,7 +80,7 @@ return render(request, 'template.html', context)
 ```
 
 
-#### Actualizacion v1.0.1
+#### Actualizacion v1.0.4
 
 - Se actualiza para poder utlizar la funcion choices dentro de los modelos
 - Se implementa el template **layoutCarga.html**
