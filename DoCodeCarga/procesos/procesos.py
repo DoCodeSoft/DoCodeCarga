@@ -17,7 +17,7 @@ def leerExcel(excel_file,modelo):
 
     campos =  proc_bd.obtener_campos(modelo)
     campos.pop(0)
-    campos_cont = 1
+    campos_cont = 1 #Empieza correctamente
     dict_cont = 0
 
     wb = openpyxl.load_workbook(excel_file)
@@ -47,7 +47,7 @@ def leerExcel(excel_file,modelo):
                         if type(dato) == datetime:
                             objeto.__dict__[campo_info['nombre']] = dato
                             a = 0
-                        elif type(dato)!=datetime:                        
+                        elif type(dato)!=datetime:
                             objeto.__dict__[campo_info['nombre']] = obtenerFecha(dato)
                     elif campo_info['tipo'] == 'FileField':
                         None
@@ -75,7 +75,7 @@ def obtenerLayout(modelo):
     campos =  proc_bd.obtener_campos(modelo)
     campos.pop(0)
     sheet_index = 0
-    
+
     # Se inicia el objeto response
     response = HttpResponse(
         content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -118,7 +118,7 @@ def obtenerLayout(modelo):
             cell.border = border_bottom
             cell.alignment = centered_alignment
             cell.fill = PatternFill(start_color='08c7ff', end_color='08c7ff', fill_type = 'solid')
-        
+
         for campo in campos:
             if campo['tipo'] == 'choices':
                 allChoices = len(campo['qdata'])
@@ -144,15 +144,15 @@ def obtenerLayout(modelo):
                     cell.alignment = centered_alignment
                     cell.fill = PatternFill(start_color='08c7ff', end_color='08c7ff', fill_type = 'solid')
 
-                for dato in datos:    
-                    row_num+=1  
+                for dato in datos:
+                    row_num+=1
                     i = 0
                     for col_num, column_title in enumerate(columns, 1):
                         cell = worksheet.cell(row=row_num, column=col_num)
-                        cell.value = dato[i]        
-                        cell.alignment = centered_alignment  
-                        i+=1        
-                
+                        cell.value = dato[i]
+                        cell.alignment = centered_alignment
+                        i+=1
+
             elif campo['foreign'] == True:
                 sheet_index += 1
                 workbook.create_sheet(campo['nombre'] + '(id)')
@@ -181,8 +181,8 @@ def obtenerLayout(modelo):
                     row_num+=1
                     for col_num, column_title in enumerate(columns, 1):
                         cell = worksheet.cell(row=row_num, column=col_num)
-                        cell.value = datos.__dict__[column_title]           
-                        cell.alignment = centered_alignment                    
+                        cell.value = datos.__dict__[column_title]
+                        cell.alignment = centered_alignment
                         m += 1
         workbook.save(response)
 
