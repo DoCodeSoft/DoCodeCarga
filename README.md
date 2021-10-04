@@ -1,8 +1,6 @@
 # dj-DoCodeCarga (Django-App)
 
-[![N|Solid](https://docode.com.mx/img/poweredbydocode.png)](https://docode.com.mx/)
-
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[![N|Build Status](https://img.shields.io/badge/Develope-DoCode-blue)](https://docode.com.mx/)
 
 DoCodeCarga es una aplicacion para generar un layout en Excel en base a un modelo asi mismo permite cargar dicho layout con informacion masivamente.
 
